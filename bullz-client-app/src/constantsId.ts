@@ -12,8 +12,8 @@ export const CONSTANTS_ID = {
     packRegistryId: "0x0ec93b9298226065c4492e4364f56432e506836ac5d04082540b0eb42aee272f",
     competitionStateId: "0x4e444f2893d8e6b7757a9dfb424edf77855621e85e8bae5ef82b4dcac9e1cdda",
     upgradeCapId: "0x7def30ef7fd8d6d3008916146123ad4a029e434f820a594d9ffaecd342ddadcd",
-    subscriptionRegistryId: "0x91c4ef5f98ed767bfef6f685b07a2da989d033ed9fd2fff266f98b3dbbc401f1",
-    subscriptionConfigId: "0x12a609d76926ad1c2e2a34d3b3ed3c6717ce984be9d051d23ae03ce9b5074ac9",
+    subscriptionRegistryId: "0x712db8f24062ffd5830880d22cb6347be7ac13f657f3ee9efc4307059bc1c540",
+    subscriptionConfigId: "0xc5a84fe4390201cc7747f18a554f760a8be706f9b96f77f4b8c701b3a7add45a",
     tradingSentimentStateId: "0xd4dd03e9a684a711b0d6fc9e6ad0d4b8692a074c6c4abe3264b745e1dc5b6adb",
   },
   devnet: {
