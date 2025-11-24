@@ -22,7 +22,7 @@ const VaultItem = ({ vault }: { vault: any }) => {
         <Link to={`/shares/${vault.vaultId}`} className="not-last:border-b not-last:border-b-gray-800">
             <div className="flex items-center gap-2 justify-between p-4 h-16 ">
                 <div className="flex items-center gap-2 flex-1">
-                    <div className="size-8 bg-gray-400 rounded-full overflow-hidden">
+                    <div className="size-8 bg-gray-400 overflow-hidden">
                         {vault.imageUrl ? (
                             <img 
                                 src={vault.imageUrl} 

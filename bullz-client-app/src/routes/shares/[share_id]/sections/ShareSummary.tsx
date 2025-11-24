@@ -40,7 +40,7 @@ const ShareSummary = ({ vaultId }: ShareSummaryProps) => {
 
     return (
         <div className="grid gap-4">
-            <div className="size-10 bg-gray-400 rounded-full overflow-hidden">
+            <div className="size-10 bg-gray-400 overflow-hidden">
                 {vaultInfo.imageUrl ? (
                     <img 
                         src={String(vaultInfo.imageUrl)} 

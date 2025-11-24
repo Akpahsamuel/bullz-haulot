@@ -98,7 +98,7 @@ const TokenImage = ({ symbol, size = "size-6" }: { symbol: string, size?: string
     // Special handling for USDC
     if (symbol === 'USDC') {
         return (
-            <div className={`${size} rounded-full overflow-hidden bg-gray-400 flex items-center justify-center`}>
+            <div className={`${size} overflow-hidden bg-gray-400 flex items-center justify-center`}>
                 <USDCIcon className="w-full h-full" />
             </div>
         )
@@ -111,7 +111,7 @@ const TokenImage = ({ symbol, size = "size-6" }: { symbol: string, size?: string
     const name = vault?.name || symbol
 
     return (
-        <div className={`${size} rounded-full overflow-hidden bg-gray-400`}>
+        <div className={`${size} overflow-hidden bg-gray-400`}>
             {imageUrl ? (
                 <img
                     src={imageUrl}
