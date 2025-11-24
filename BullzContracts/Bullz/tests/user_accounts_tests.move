@@ -69,9 +69,11 @@ module bullz::user_accounts_tests {
             let mut registry = ts::take_shared<UserRegistry>(&scenario);
             user_accounts::create_account(&mut registry, ts::ctx(&mut scenario));
             
-            assert!(user_accounts::can_compete(&registry, USER1) == false, 0);
+            // New accounts start with 1000 shill points, so they can compete
+            assert!(user_accounts::can_compete(&registry, USER1) == true, 0);
             
-            user_accounts::award_shill_points(&mut registry, USER1, 100, string::utf8(b"Test"));
+            // Award additional points
+            user_accounts::award_shill_points_for_testing(&mut registry, USER1, 100, string::utf8(b"Test"));
             assert!(user_accounts::can_compete(&registry, USER1) == true, 1);
 
             ts::return_shared(registry);

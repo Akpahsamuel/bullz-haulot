@@ -397,4 +397,14 @@ module bullz::user_accounts {
     ) {
         track_asset_ownership(registry, user, symbol);
     }
+
+    #[test_only]
+    public fun award_shill_points_for_testing(
+        registry: &mut UserRegistry,
+        user: address,
+        amount: u64,
+        reason: String,
+    ) {
+        award_shill_points(registry, user, amount, reason);
+    }
 }
