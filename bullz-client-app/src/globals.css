@@ -1,0 +1,89 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@theme {
+  --color-background: #000019;
+  --color-foreground: #ffffff;
+  --font-offbit: var(--font-offbit);
+  --color-waitlist-form-border: #404040;
+  --color-button-foreground: #ffff;
+  --color-button-bg: #ff5c16;
+  --color-modal-bg: #1e1e28;
+  --color-gray-300: #9898b3;
+  --color-gray-100: #dadae6;
+  --color-gray-200: #dadae6;
+  --color-gray-400: #7a7a99;
+  --color-gray-600: #474766;
+  --color-gray-700: #32324d;
+  --color-gray-800: #1f1f33;
+  --color-gray-850: #161626;
+  --color-gray-900: #0a0a1d;
+  --color-success-foreground: #00ff00;
+  --color-success-opacity1: #24c98d14;
+  --color-profit-foreground: #36ff91;
+  --color-loss-foreground: #ff9999;
+  --color-slider-bg: #31333a;
+  --color-slider-border: #e1e2e7;
+  --color-sui-blue: #4da2ff;
+  --color-font-subtext: #b8b8cc;
+
+  --text-display-lg: 5.188rem;
+  --text-display-lg--line-height: 100%;
+  --text-display-lg--letter-spacing: 0.04em;
+  --text-display-md: 4.188rem;
+  --text-display-md--line-height: 100%;
+  --text-display-md--letter-spacing: 0.04em;
+  --text-display-sm: 3.313rem;
+  --text-display-sm--line-height: 100%;
+  --text-display-sm--letter-spacing: 0.04em;
+  --text-heading-lg: 2.688rem;
+  --text-heading-lg--line-height: 100%;
+  --text-heading-lg--letter-spacing: 0.04em;
+  --text-heading-md: 2.125rem;
+  --text-heading-md--line-height: 100%;
+  --text-heading-md--letter-spacing: 0.04em;
+  --text-heading-sm: 1.688rem;
+  --text-heading-sm--line-height: 100%;
+  --text-heading-sm--letter-spacing: 0.04em;
+  --text-title-lg: 1.375rem;
+  --text-title-lg--line-height: 100%;
+  --text-title-lg--letter-spacing: 0.04em;
+  --text-title-md: 1.063rem;
+  --text-title-md--line-height: 100%;
+  --text-title-md--letter-spacing: 0.04em;
+  --text-title-sm: 0.875rem;
+  --text-title-sm--line-height: 100%;
+  --text-title-sm--letter-spacing: 0.04em;
+  --text-body-lg: 1.063rem;
+  --text-body-lg--line-height: 100%;
+  --text-body-lg--letter-spacing: 0.04em;
+  --text-body-md: 0.840rem;
+  --text-body-md--line-height: 100%;
+  --text-body-md--letter-spacing: 0.04em;
+  --text-body-sm: 0.563rem;
+  --text-body-sm--line-height: 100%;
+  --text-body-sm--letter-spacing: 0.04em;
+}
+
+@layer base {
+  body {
+    @apply bg-background text-foreground;
+    font-family: var(--font-offbit), sans-serif; /* ✅ add this */
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  html {
+    background-color: #000019;
+  }
+}
+
+.bull-glow {
+  filter: drop-shadow(0 0 20px rgba(255, 92, 22, 0.5));
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  display: none;
+}
