@@ -1,0 +1,33 @@
+{
+  "packageId": "0x178eb41342c035adfea5ea895d94f064c00bd50da432f1ba0cc5c872d3ce6a66",
+  "transactionDigest": "2dmgFUL1b7hVVy8qRZGM5G428YEbB11pSU7zFherTJZW",
+  "publishedAt": "2025-01-27T00:00:00.000Z",
+  "network": "devnet",
+  "objects": {
+    "packageId": "0x178eb41342c035adfea5ea895d94f064c00bd50da432f1ba0cc5c872d3ce6a66",
+    "upgradeCap": "0x9d2e04048978680ae50357699b2a4dcb15e73df055bf412276cb95b69fb41a4a",
+    "adminCap": "0x24ef5b1b12f24fa6f1b3e78c6ae289ef34cdcc83ede41136275501a41a0d64cc",
+    "treasuryCap": "0x6e3847b6d575ff76c3fa87178c21f4bd324887a0ecdd97e5098164f824bfc497",
+    "adminRegistry": "0xcae069cc98a5df518b37b1153f5a0ba3c52ed13fa3ced1cdbd8147c686d3040f",
+    "assetRegistry": "0x0f4f95747d90cf63b242896eb244503d9b069d451ed639fa9437e9324b370337",
+    "treasury": "0xdb6b60767bf57c1faa8e5c10c25615b31a1c058cf6389310c89bf1868f4ef141",
+    "squadRegistry": "0x899d8308e0b244ae0ef0f45d56d1284dea8531a216767db6ae1415a6406e5f0b",
+    "userRegistry": "0xd427a01082d7ad7e70f3b89677a97882f435260fd5bf709ac531f099c75da887",
+    "packRegistry": "0x5f811c88739fbceffe5ee6d2c116e66933251875665a3df5ff9f98ebc5859796",
+    "competitionState": "0xeedecfd97b9e23479037b675a83761b2f53a8274b667f2c763f250bc735dcbc8"
+  },
+  "modules": [
+    "admin",
+    "alpha_chart",
+    "asset_registry",
+    "bullz",
+    "error",
+    "fee_management",
+    "math",
+    "pack_system",
+    "squad_management",
+    "trading",
+    "user_accounts",
+    "weekly_competition"
+  ]
+}
