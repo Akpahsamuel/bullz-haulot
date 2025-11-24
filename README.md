@@ -1,72 +1,82 @@
-# 🐂 Bullz - Proof of Conviction Engine for On-chain assets
+# Bullz: The Proof of Conviction Engine
 
-> Draft squads of blockchain assets, compete weekly, and win prizes based on real-world performance.
+**Gamified Prediction Markets for Capital-Backed Sentiment.**  
+Built on Sui & Walrus.
 
-[![Sui](https://img.shields.io/badge/Sui-Blockchain-blue)](https://sui.io)
-[![React](https://img.shields.io/badge/React-18.3-61dafb)](https://react.dev)
-[![TypeScript](https://img.shields.io/badge/TypeScript-5.x-blue)](https://www.typescriptlang.org/)
-[![Move](https://img.shields.io/badge/Move-Smart%20Contracts-orange)](https://docs.sui.io/concepts/sui-move-concepts)
+## 🐂 Project Overview
 
-## 🎯 What is Bullz?
+Bullz answers the biggest question in Web3: **"What to buy?"**
 
-Bullz combines **fantasy sports** with **crypto prediction markets**. Pick blockchain assets (BTC, ETH, SUI, etc.), draft your squad of 7, and compete for prizes based on which assets perform best each week.
+We solve this by blending prediction markets with the viral mechanics of fantasy football. Users build a "squad" of 7 assets and lock capital to their predictions in weekly leagues. This filters out the noise of bots, shillers, and "mindshare farming," generating a **Provably Authentic sentiment layer** backed by real "skin in the game."
 
-**Key Concept:** Hold shares of top-performing assets to win—not just trade them.
+## 🎯 Hackathon Track: Provably Authentic
 
-## 🎮 How It Works
+Bullz fits the **Provably Authentic** track because we are building a **Trust Oracle for market sentiment**.
 
-1. **Buy Asset Shares**: Acquire Bullz Shares ($bBTC, $bETH, etc.) through packs or trading
-2. **Draft Your Squad**: Select 7 assets you think will perform best
-3. **Squad Lock**: Each Monday, all squads are locked and snapshotted on-chain
-4. **Compete**: Track your squad's performance throughout the week
-5. **Win Prizes**: Top asset holders and best squads earn Alpha Points and Shill Points
+In a world of deepfakes and bot farms, Bullz provides the only sentiment data that cannot be faked: **sentiment backed by locked capital**. We verify the "truth" of market conviction and use Walrus to create an immutable, decentralized record of that truth.
 
-**Rolling Trades**: Edit your squad anytime, but changes only apply to the next competition week (like Fantasy Premier League).
+## 🦭 How We Use Walrus
 
-## 🏆 Prize System
+Walrus is the backbone of our data integrity and asset management, ensuring our "Proof of Conviction" is verifiable, censorship-resistant, and decentralized.
 
-- **Alpha Points**: Earned by holding top 3 assets in each category (Large Cap, Mid Cap, Small Cap, Memes). Used to buy packs.
-- **Shill Points**: Earned from squad performance. Required to participate in competitions.
-- **Prize Distribution**: 80% to players, 20% to team treasury
+### 1. Dynamic NFT Metadata Storage
+Every "Bullz Share" and "Squad" position is represented as an NFT. We use Walrus to store the dynamic metadata and visual assets for these positions.
 
-## 🌟 Key Features
+**Why Walrus?** Traditional IPFS can be slow or unreliable for dynamic game assets. Walrus provides the speed and redundancy needed for a consumer-grade game experience while keeping the underlying asset data decentralized.
 
-- 🎴 **Asset Shares**: Fixed-supply NFTs representing crypto assets (BTC, ETH, SUI, etc.)
-- 🏆 **Squad Management**: Draft and manage your 7-asset squad
-- 📊 **Alpha Chart**: Real-time trending assets based on new buyers
-- 🎯 **Weekly Competitions**: Compete for prizes based on asset performance
-- 📈 **Leaderboards**: Track top assets and top squads
-- 💬 **Community Hub**: Discover trending tokens and founder commentary
-- ⛓️ **Fully On-Chain**: Transparent, verifiable, non-custodial
+### 2. Verifiable Game History (The "Truth Engine")
+To function as a sentiment oracle, our historical data must be immutable.
 
-## 🛠 Tech Stack
+- **Implementation:** At the end of every Game Week, we take a snapshot of the leaderboard, asset performance, and "Conviction Bars" data.
+- **Archival:** This entire dataset is compressed and archived onto Walrus.
+- **Outcome:** This creates a permanent, tamper-proof ledger of market sentiment that serves as a decentralized oracle for future analysis, backtesting, and "reputation scoring" for our top players.
 
-**Frontend**: React 18 + TypeScript + Vite + Tailwind CSS + Radix UI
+### 3. Decentralized Frontend (Roadmap)
+We are in the process of migrating our frontend hosting to Walrus Sites to ensure the platform is as unstoppable as the data it generates, protecting our users from censorship or de-platforming.
 
-**Blockchain**: Sui Network + Move Smart Contracts
+## 🚀 Key Features
 
-**Key Libraries**:
-- `@mysten/dapp-kit` - Wallet integration
-- `@mysten/sui` - Sui SDK  
-- `@mysten/walrus` - Decentralized storage
-- TanStack Query - State management
-- Recharts - Data visualization
+- **Fantasy Squads:** Draft a team of 7 assets (Crypto, NFTs, RWAs) from any chain.
+- **Lock-to-Play:** Users must lock real capital (shares) to enter, filtering out bots and spam.
+- **Conviction Bars:** A real-time dashboard aggregating locked capital to show exactly what the smartest managers are betting on.
+- **Pre-TGE Markets:** The first market for unlaunched tokens, allowing projects to gauge true community conviction before TGE.
+- **Unified Wallet:** Deposit USDC from Base, ETH, or Solana directly into your Bullz game wallet.
 
-**Smart Contracts**: 
-- `bullz.move` - Core protocol
-- `squad_management.move` - Squad system
-- `weekly_competition.move` - Competition logic
-- `fee_management.move` - Prize distribution
+## 🛠️ Tech Stack
 
-## 🚀 Getting Started
+- **Blockchain:** Sui Network (Move Smart Contracts)
+- **Storage:** Walrus Protocol
+- **Frontend:** React / Vite / Tailwind CSS
+- **Indexing:** Custom indexer for real-time game scoring
 
+## 💻 Getting Started
+
+To run the Bullz project locally:
+
+### Prerequisites
+- Node.js & pnpm
+- Sui CLI
+- Walrus CLI
+
+### Installation
+
+1. **Clone the repo**
 ```bash
-# Clone and install
-git clone <repository-url>
-cd Bullz_haulot/bullz-client-app
-pnpm install
+git clone https://github.com/Akpahsamuel/bullz-haulot.git
+cd bullz-haulot
+```
 
-# Start dev server
+2. **Install Dependencies**
+```bash
+cd bullz-client-app
+pnpm install
+```
+
+3. **Configure Environment**  
+Copy `.env.example` to `.env` and add your Walrus aggregator and publisher URLs.
+
+4. **Run Local Development**
+```bash
 pnpm dev
 ```
 
@@ -81,28 +91,18 @@ sui client publish --gas-budget 100000000
 
 Update contract IDs in `bullz-client-app/src/constantsId.ts`
 
-## 💻 Development
+## 🗺️ Roadmap
 
-```bash
-pnpm dev              # Start development server
-pnpm build            # Build for production
-pnpm start:automation # Run bid matching automation
-pnpm start:snapshot   # Run competition snapshot service
-```
+- **Phase 1 (Current):** Core Game Loop & Walrus Integration (Testnet)
+- **Phase 2:** Pre-TGE Markets & "Conviction Bars" V1
+- **Phase 3:** Mainnet Launch & Cross-Chain Expansion
 
-## 📚 Documentation
+## 🤝 Contact
 
-- [Environment Setup](bullz-client-app/ENVIRONMENT_SETUP.md)
-- [Snapshot Service](bullz-client-app/scripts/SNAPSHOT_SERVICE.md)
-- [Walrus Upload Guide](walrus/WALRUS_UPLOAD_GUIDE.md)
-
-
-
-## 🔗 Links
-
-- [Sui Documentation](https://docs.sui.io)
-- [Walrus Storage](https://docs.walrus.site)
+**Founder:** Jack Daniyel (Lionhead)  
+**X / Telegram:** [@lionhead_king](https://twitter.com/lionhead_king)  
+**Email:** jd@fanpool.gg
 
 ---
 
-Built by the Bullz team 🐂
+Built with 🐂 by the Bullz team
