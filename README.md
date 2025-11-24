@@ -96,9 +96,7 @@ pnpm start:snapshot   # Run competition snapshot service
 - [Snapshot Service](bullz-client-app/scripts/SNAPSHOT_SERVICE.md)
 - [Walrus Upload Guide](walrus/WALRUS_UPLOAD_GUIDE.md)
 
-## 📄 License
 
-MIT License - see LICENSE file for details.
 
 ## 🔗 Links
 
