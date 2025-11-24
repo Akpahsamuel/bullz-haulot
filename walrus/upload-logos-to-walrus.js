@@ -5,7 +5,8 @@ const path = require('path');
 const { execSync } = require('child_process');
 
 const WALRUS_PUBLISHER_URL = 'https://publisher.walrus-testnet.walrus.space/v1/blobs?epochs=10';
-const LOGOS_DIR = path.join(__dirname, 'bullz-logos');
+const LOGOS_DIR = path.join(__dirname, '..', 'Fanpool');
+const ASSET_URLS_FILE = path.join(__dirname, 'asset-image-urls.json');
 
 function uploadFile(filePath) {
   const fileName = path.basename(filePath);
@@ -44,7 +45,7 @@ function uploadFile(filePath) {
 }
 
 function main() {
-  console.log('Starting Walrus logo epoch extension to 10 epochs...\n');
+  console.log('Starting Fanpool images upload to Walrus (10 epochs)...\n');
   
   if (!fs.existsSync(LOGOS_DIR)) {
     console.error(`Error: Directory ${LOGOS_DIR} not found`);
@@ -52,39 +53,75 @@ function main() {
   }
   
   const files = fs.readdirSync(LOGOS_DIR)
-    .filter(file => file.toLowerCase().endsWith('.png'))
+    .filter(file => {
+      const ext = file.toLowerCase();
+      return ext.endsWith('.svg') || ext.endsWith('.png') || ext.endsWith('.jpg') || 
+             ext.endsWith('.jpeg') || ext.endsWith('.webp');
+    })
     .sort();
   
-  console.log(`Found ${files.length} logo files to upload\n`);
+  console.log(`Found ${files.length} image files to upload\n`);
   
-  const blobMap = {};
+  // Load existing asset URLs
+  let assetUrls = {};
+  if (fs.existsSync(ASSET_URLS_FILE)) {
+    try {
+      const fileContent = fs.readFileSync(ASSET_URLS_FILE, 'utf-8').trim();
+      if (fileContent) {
+        assetUrls = JSON.parse(fileContent);
+        console.log(`Loaded ${Object.keys(assetUrls).length} existing entries from asset-image-urls.json\n`);
+      }
+    } catch (error) {
+      console.log('Starting with empty asset URLs (file was empty or invalid)\n');
+    }
+  }
+  
+  let uploaded = 0;
+  let skipped = 0;
   
   for (const file of files) {
     const filePath = path.join(LOGOS_DIR, file);
-    const assetName = file.replace(/\.png$/i, '');
+    const assetName = file.replace(/\.(svg|png|jpg|jpeg|webp)$/i, '');
+    
+    // Check if already uploaded
+    if (assetUrls[assetName]) {
+      console.log(`⊘ ${file} - already exists, skipping...`);
+      skipped++;
+      continue;
+    }
+    
     const blobId = uploadFile(filePath);
     
     if (blobId) {
-      blobMap[assetName] = blobId;
+      const walrusUrl = `https://aggregator.walrus-testnet.walrus.space/v1/blobs/${blobId}`;
+      assetUrls[assetName] = walrusUrl;
+      uploaded++;
     }
     
     execSync('sleep 0.1');
   }
   
+  // Sort the asset URLs alphabetically by key
+  const sortedAssetUrls = Object.keys(assetUrls)
+    .sort()
+    .reduce((acc, key) => {
+      acc[key] = assetUrls[key];
+      return acc;
+    }, {});
+  
+  // Save updated asset URLs
+  fs.writeFileSync(ASSET_URLS_FILE, JSON.stringify(sortedAssetUrls, null, 2));
+  
   // Output the final map
   console.log('\n' + '='.repeat(80));
-  console.log('UPLOAD COMPLETE - BLOB MAP');
+  console.log('UPLOAD COMPLETE');
   console.log('='.repeat(80) + '\n');
   
-  console.log(JSON.stringify(blobMap, null, 2));
-  
-  const outputFile = path.join(__dirname, 'walrus-logo-blobs.json');
-  fs.writeFileSync(outputFile, JSON.stringify(blobMap, null, 2));
-  console.log(`\n✓ Blob map saved to: ${outputFile}`);
-  
-  const successful = Object.keys(blobMap).length;
-  const failed = files.length - successful;
-  console.log(`\nSummary: ${successful} successful, ${failed} failed`);
+  console.log(`✓ Asset URLs updated in: ${ASSET_URLS_FILE}`);
+  console.log(`\nSummary:`);
+  console.log(`  - New uploads: ${uploaded}`);
+  console.log(`  - Skipped (already exist): ${skipped}`);
+  console.log(`  - Total entries: ${Object.keys(sortedAssetUrls).length}`);
 }
 
 main();
