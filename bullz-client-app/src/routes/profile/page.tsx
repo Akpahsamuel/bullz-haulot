@@ -20,6 +20,8 @@ import FlameIcon from "@/components/icons/flame.icon";
 import AlphaIcon from "@/components/icons/alpha.icon";
 import ShillIcon from "@/components/icons/shill.icon";
 import SquadIcon from "@/components/icons/squad.icon";
+import { fetchAvailableWeeks } from "@/hooks/useCompetitionData";
+import { useQuery } from "@tanstack/react-query";
 
 type Streak = {
   day: number
@@ -32,7 +34,6 @@ const ProfilePage = () => {
   const currentAccount = useCurrentAccount();
   const navigate = useNavigate();
 
-  // Get address from multiple sources (wallet connection, app store, or auth user)
   const walletAddress = currentAccount?.address || address || user?.wallet_address || "";
   const [textToCopy] = useState<string>(walletAddress);
   const [copied, setCopied] = useState(false);
@@ -63,6 +64,12 @@ const ProfilePage = () => {
 
   const [recover, setRecover] = React.useState(false)
   const [show, setShow] = React.useState(false)
+
+ 
+  const { data: availableWeeks } = useQuery({
+    queryKey: ["available-weeks"],
+    queryFn: fetchAvailableWeeks,
+  })
 
   const streaks: Array<Streak> = [
     {
@@ -319,16 +326,24 @@ const ProfilePage = () => {
             <div className="grid gap-4 py-5">
               <p className="font-offbit text-title-sm font-bold uppercase text-gray-300">Previous competitions</p>
               <div className="grid gap-2">
-                <div className="bg-gray-850 px-4 py-3 grid grid-cols-2">
-                  <div className="flex items-center gap-1">
-                    <div className="size-4 bg-gray-400"></div>
-                    <p className="font-offbit font-bold uppercase text-body-md">gameweek 1</p>
+                {availableWeeks && availableWeeks.length > 0 ? (
+                  [...availableWeeks].reverse().map(({ week }) => (
+                    <div key={week} className="bg-gray-850 px-4 py-3 grid grid-cols-2">
+                      <div className="flex items-center gap-1">
+                        <div className="size-4 bg-gray-400"></div>
+                        <p className="font-offbit font-bold uppercase text-body-md">gameweek {week}</p>
+                      </div>
+                      <div className="flex items-center gap-1 ml-auto">
+                        <p className="font-offbit font-bold uppercase text-body-md">-</p>
+                        <p className="font-offbit font-bold uppercase text-body-md text-gray-300">pts</p>
+                      </div>
+                    </div>
+                  ))
+                ) : (
+                  <div className="bg-gray-850 px-4 py-3 text-center">
+                    <p className="font-offbit font-bold uppercase text-body-md text-gray-400">No competitions yet</p>
                   </div>
-                  <div className="flex items-center gap-1 ml-auto">
-                    <p className="font-offbit font-bold uppercase text-body-md">1,394</p>
-                    <p className="font-offbit font-bold uppercase text-body-md text-gray-300">pts</p>
-                  </div>
-                </div>
+                )}
               </div>
             </div>
 
