@@ -1,4 +1,4 @@
-# 🐂 Bullz - Fantasy Sports for Crypto Assets
+# 🐂 Bullz - Proof of Conviction Engine for On-chain assets
 
 > Draft squads of blockchain assets, compete weekly, and win prizes based on real-world performance.
 
